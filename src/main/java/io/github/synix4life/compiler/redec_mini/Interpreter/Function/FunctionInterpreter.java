@@ -8,7 +8,11 @@ import io.github.synix4life.compiler.redec_mini.Parser.Types.Fun.Function;
 import java.util.HashMap;
 
 public class FunctionInterpreter {
+    // ---------------- VARIABLES ---------------- //
     private final HashMap<String, RFunction> functions;
+
+
+    // ---------------- CONSTRUCTOR ---------------- //
 
     /**
      * Constructor
@@ -16,6 +20,9 @@ public class FunctionInterpreter {
     public FunctionInterpreter() {
         this.functions = new HashMap<>();
     }
+
+
+    // ---------------- FUNCTIONS ---------------- //
 
     /**
      * Register a new function and make it callable
@@ -50,6 +57,4 @@ public class FunctionInterpreter {
     public boolean exists(String name) {
         return functions.containsKey(name);
     }
-
-
 }

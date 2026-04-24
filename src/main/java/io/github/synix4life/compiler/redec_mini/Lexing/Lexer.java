@@ -6,8 +6,13 @@ import io.github.synix4life.compiler.redec_mini.Lexing.Exception.LexingException
 import java.util.ArrayList;
 
 public class Lexer {
+    // ---------------- VARIABLES ---------------- //
     private final String[] data;
     private ArrayList<Token> tokens;
+
+
+
+    // ---------------- CONSTRUCTOR ---------------- //
 
     /**
      * Constructor
@@ -23,7 +28,6 @@ public class Lexer {
 
     /**
      * Method to lex the data string
-     * @return The lexed token list
      */
     public void parse() {
         tokens = new ArrayList<>();

@@ -7,17 +7,28 @@ import io.github.synix4life.compiler.redec_mini.Parser.Types.*;
 import io.github.synix4life.compiler.redec_mini.Parser.Types.Expr.*;
 import io.github.synix4life.compiler.redec_mini.Parser.Types.Fun.*;
 
+import javax.swing.plaf.nimbus.State;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
 public class Parser {
-    ArrayList<Token> lex;
-    int pos = 0;
+    // ---------------- VARIABLES ---------------- //
+    private final ArrayList<Token> lex;
+    private int pos = 0;
+    private final HashMap<String, Function> f = new HashMap<String, Function>();
 
-    private HashMap<String, Function> f = new HashMap<String, Function>();
+    private final List<Statement> statementList = new ArrayList<>();
 
+
+
+    // ---------------- CONSTRUCTOR ---------------- //
+
+    /**
+     * Constructor
+     * @param lex The lexing results
+     */
     public Parser(ArrayList<Token> lex){
         this.lex = lex;
     }
@@ -28,14 +39,11 @@ public class Parser {
 
     /**
      * Parser root
-     * @return List of Statements -> AST
      */
-    public List<Statement> parse(){
-        List<Statement> list = new ArrayList<>(List.of());
+    public void parse(){
         while(pos < lex.size()){
-            list.add(parseStatement());
+            statementList.add(parseStatement());
         }
-        return list;
     }
 
 
@@ -309,6 +317,7 @@ public class Parser {
     }
 
 
+
     // ---------------- EXPRESSIONS ---------------- //
 
     /**
@@ -395,8 +404,7 @@ public class Parser {
      */
     private NumberExpression parseNumberExpression(){
         NumberExpression e = new NumberExpression();
-        e.value = Integer.parseInt(lex.get(pos).value());
-        pos ++;
+        e.value = Integer.parseInt(consumeReturn(TokenType.NUMBER));
         return e;
     }
 
@@ -406,8 +414,7 @@ public class Parser {
      */
     private VariableExpression parseVariableExpression(){
         VariableExpression v = new VariableExpression();
-        v.variable = lex.get(pos).value();
-        pos ++;
+        v.variable = consumeReturn(TokenType.IDENT);
         return v;
     }
 
@@ -429,6 +436,22 @@ public class Parser {
         }
         pos++;
         return e;
+    }
+
+
+
+    // ---------------- EXPRESSIONS ---------------- //
+
+    /**
+     * Get the list of statements
+     * @return List of Statements -> AST
+     * @throws NullPointerException If the list hasn't yet been created
+     */
+    public List<Statement> getStatementList() throws NullPointerException{
+        if(statementList.isEmpty()){
+            throw new NullPointerException("StatementList not initialized");
+        }
+        return statementList;
     }
 }
 

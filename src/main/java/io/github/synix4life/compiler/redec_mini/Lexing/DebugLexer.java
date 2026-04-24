@@ -8,12 +8,12 @@ public class DebugLexer {
 
     /**
      * Debug the lexing result (i.e. print the tokens)
-     * @param i Token array
+     * @param lexer The lexer object with the lexed tokens
      */
-    public static void debugLexer(ArrayList<Token> i) {
+    public static void debugLexer(Lexer lexer) {
         System.out.println("\n # =============== LEXING =============== # \n");
 
-        for (Token t : i) {
+        for (Token t : lexer.getTokens()) {
             System.out.print(t.type() + "(\"" + t.value() + "\") ");
         }
         System.out.println(); System.out.println();

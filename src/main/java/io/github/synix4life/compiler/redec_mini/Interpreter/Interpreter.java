@@ -10,10 +10,15 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Interpreter {
-    private HashMap<String, Integer> variableTable;
+    // ---------------- VARIABLES ---------------- //
+    private final HashMap<String, Integer> variableTable;
     private final List<Statement> list;;
-    private FunctionInterpreter f;
+    private final FunctionInterpreter f;
     private int pos = 0;
+
+
+
+    // ---------------- CONSTRUCTOR ---------------- //
 
     /**
      * Constructor
@@ -36,6 +41,10 @@ public class Interpreter {
         this.f = f;
     }
 
+
+
+    // ---------------- INTERPRET ---------------- //
+
     /*
     RESERVED FOR FUTURE DEVELOPMENT: First idea was printing variables after assigning. This is the leftover from that.
     private void printVariable(String name, Integer value) {
@@ -56,16 +65,15 @@ public class Interpreter {
         } else if(e instanceof BooleanExpression){
             int LHS = interpretAssignment(((BooleanExpression) e).LHS);
             int RHS = interpretAssignment(((BooleanExpression) e).RHS);
-            int res = 0;
-            switch (((BooleanExpression) e).op){
-                case EQEQ: res = (LHS == RHS)? 1: 0; break;
-                case LT: res = (LHS < RHS)? 1: 0; break;
-                case LEQ: res = (LHS <= RHS)? 1: 0; break;
-                case GT: res = (LHS > RHS)? 1: 0; break;
-                case GEQ: res = (LHS >= RHS)? 1: 0; break;
-                default: throw new TypeException("Opcode not fitting! Expected BooleanOpcode, but got" + ((BooleanExpression) e).op.toString());
+            return switch (((BooleanExpression) e).op) {
+                case EQEQ -> (LHS == RHS) ? 1 : 0;
+                case LT -> (LHS < RHS) ? 1 : 0;
+                case LEQ -> (LHS <= RHS) ? 1 : 0;
+                case GT -> (LHS > RHS) ? 1 : 0;
+                case GEQ -> (LHS >= RHS) ? 1 : 0;
+                default ->
+                        throw new TypeException("Opcode not fitting! Expected BooleanOpcode, but got" + ((BooleanExpression) e).op.toString());
             };
-            return res;
         } else if (e instanceof NumberExpression n) {
             return n.value;
         } else if (e instanceof VariableExpression v) {
@@ -131,6 +139,10 @@ public class Interpreter {
         pos ++;
     }
 
+
+
+    // ---------------- INTERPRETER MAIN ---------------- //
+
     /**
      * Run the interpreter
      */
@@ -140,6 +152,10 @@ public class Interpreter {
         }
     }
 
+
+
+    // ---------------- GETTER ---------------- //
+
     /**
      * VariableTable getter, required for the Debugger
      * @return The VariableTable
@@ -148,6 +164,10 @@ public class Interpreter {
         return variableTable;
     }
 
+
+
+    // ---------------- FUNCTION EXECUTION ---------------- //
+
     /**
      * Function to execute a program-internal function on call-statement/ -expression
      * @param name Function name
@@ -155,22 +175,22 @@ public class Interpreter {
      * @return Return value (int), 0 if no return statement was found inside the function
      */
     private int executeFunction(String name, List<Expression> passedArgs) {
-        // 1. Get the function logic from the "Phonebook"
+        // 1. Get the function logic from the registered functions
         RFunction func = f.get(name);
 
         // 2. Create the "executable copy"
         // We pass 'this.f', so the function can call other functions too
         Interpreter child = new Interpreter(func.statements, this.f);
 
-        // 3. Match the numbers you passed to the function's variable names
-        // e.g., if you call add(2, 5), set a=2 and b=5 in the child's table
+        // 3. Match the numbers of arguments
+        // e.g., if call "add(2, 5)", set a=2 and b=5 in the child's table
         for (int i = 0; i < func.args.size(); i++) {
             String paramName = func.args.get(i);
             int value = interpretAssignment(passedArgs.get(i));
             child.variableTable.put(paramName, value);
         }
 
-        // 4. Run the child and catch the "Return teleport" using the ReturnException
+        // 4. Run the child and catch the return using the ReturnException
         try {
             child.run();
         } catch (ReturnException e) {

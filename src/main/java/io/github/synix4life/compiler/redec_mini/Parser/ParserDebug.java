@@ -2,9 +2,7 @@ package io.github.synix4life.compiler.redec_mini.Parser;
 
 import io.github.synix4life.compiler.redec_mini.Parser.Types.Expr.*;
 import io.github.synix4life.compiler.redec_mini.Parser.Types.*;
-import io.github.synix4life.compiler.redec_mini.Parser.Types.Fun.CallExpression;
-import io.github.synix4life.compiler.redec_mini.Parser.Types.Fun.CallStatement;
-import io.github.synix4life.compiler.redec_mini.Parser.Types.Fun.Function;
+import io.github.synix4life.compiler.redec_mini.Parser.Types.Fun.*;
 
 import java.util.List;
 
@@ -14,12 +12,12 @@ public class ParserDebug {
 
     /**
      * Parse debug (i.e. print the AST)
-     * @param statements List of the statements
+     * @param parser The parser object with the created statement list
      */
-    public static void debugParser(List<Statement> statements) {
+    public static void debugParser(Parser parser) {
         System.out.println("\n # =============== AST =============== # \n");
 
-        for (Statement s : statements) {
+        for (Statement s : parser.getStatementList()) {
             printStatement(s, 0);
         }
         System.out.println();

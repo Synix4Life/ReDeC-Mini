@@ -7,10 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RFunction {
+    // ---------------- VARIABLES ---------------- //
     public final String name;
     public List<String> args;
     public List<Statement> statements;
 
+
+    // ---------------- CONSTRUCTOR ---------------- //
+
+    /**
+     * Constructor
+     * @param f The function f to extract the necessary information from
+     */
     public RFunction(Function f){
         this.name = f.name;
         this.statements = f.statements;

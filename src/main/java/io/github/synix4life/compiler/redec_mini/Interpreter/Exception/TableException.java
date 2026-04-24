@@ -9,12 +9,4 @@ public class TableException extends RuntimeException {
     public TableException(String message) {
         super(message);
     }
-
-    /**
-     * Throw a TableException
-     * -> An exception if VariableTable operations failed
-     */
-    public TableException() {
-        super();
-    }
 }

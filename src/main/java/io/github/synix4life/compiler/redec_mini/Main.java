@@ -1,13 +1,5 @@
 package io.github.synix4life.compiler.redec_mini;
 
-import io.github.synix4life.compiler.redec_mini.Interpreter.Interpreter;
-import io.github.synix4life.compiler.redec_mini.Lexing.*;
-import io.github.synix4life.compiler.redec_mini.Parser.*;
-
-import static io.github.synix4life.compiler.redec_mini.Interpreter.DebugInterpreter.printVariableTable;
-import static io.github.synix4life.compiler.redec_mini.Lexing.DebugLexer.debugLexer;
-import static io.github.synix4life.compiler.redec_mini.Parser.ParserDebug.debugParser;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
@@ -15,7 +7,6 @@ import java.util.Objects;
 
 public class Main {
     private static String[] data;
-    private static boolean debugMode = false;
 
     /**
      * Method to read the stdin or the input file
@@ -42,25 +33,12 @@ public class Main {
             throw new RuntimeException(e);
         }
 
+        boolean debugMode = false;
         if(Objects.equals(data[0], "DEBUG")){
             debugMode = true;
             data = java.util.Arrays.copyOfRange(data, 1, data.length);
         }
 
-        Lexer lexer = new Lexer(data);
-        lexer.parse();
-        lexer.optimizeLex();
-
-        if(debugMode) { debugLexer(lexer.getTokens()); }
-
-        Parser parser = new Parser(lexer.getTokens());
-        var res = parser.parse();
-
-        if(debugMode){ debugParser(res); }
-
-        Interpreter interpreter = new Interpreter(res);
-        interpreter.run();
-
-        printVariableTable(interpreter, debugMode);
+        Pipeline.runPipeline(data, debugMode);
     }
 }
