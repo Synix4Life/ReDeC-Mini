@@ -4,7 +4,7 @@
 ![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=for-the-badge&logo=Gradle&logoColor=white)
 
 ![License](https://img.shields.io/badge/License-GNU_GPL--3.0-fcad3f?style=for-the-badge)
-![Version](https://img.shields.io/badge/Version-1.1.0-fcad3f?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-1.1.1-fcad3f?style=for-the-badge)
 
 ![Tests Passed](https://img.shields.io/badge/Tests_Passed-27/27-fcad3f?style=for-the-badge)
 ![Reference Tests Passed](https://img.shields.io/badge/Reference_Tests_Passed-6/6-02303A.svg?style=for-the-badge)
@@ -89,3 +89,6 @@ This compiler was created as part for the JetBrains Internship Application for "
   - $\textsf{\color{#fcad3f}Version 1.1.0}$
     - Added Lexer & Parser Tests
     - Added equals and hashCode overwriting in Parser classes to make comparisons possible
+
+    - $\textsf{\color{#fcad3f}Version 1.1.1}$
+      - Reference Test refinements

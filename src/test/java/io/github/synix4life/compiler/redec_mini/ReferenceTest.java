@@ -31,6 +31,8 @@ public class ReferenceTest {
         // ----- ASSERT OUTPUT ----- //
         String output = content.toString().trim();
 
+        assertEquals(9, output.length());
+
         assertTrue(output.contains("x: 2"));
         assertTrue(output.contains("y: 5"));
     }
@@ -55,6 +57,8 @@ public class ReferenceTest {
 
         // ----- ASSERT OUTPUT ----- //
         String output = content.toString().trim();
+
+        assertEquals(12, output.length());
 
         assertTrue(output.contains("x: 20"));
         assertTrue(output.contains("y: 100"));
@@ -81,6 +85,8 @@ public class ReferenceTest {
         // ----- ASSERT OUTPUT ----- //
         String output = content.toString().trim();
 
+        assertEquals(10, output.length());
+
         assertTrue(output.contains("x: 3"));
         assertTrue(output.contains("y: 11"));
     }
@@ -106,6 +112,8 @@ public class ReferenceTest {
         // ----- ASSERT OUTPUT ----- //
         String output = content.toString().trim();
 
+        assertEquals(7, output.length());
+
         assertTrue(output.contains("four: 4"));
     }
 
@@ -130,6 +138,8 @@ public class ReferenceTest {
         // ----- ASSERT OUTPUT ----- //
         String output = content.toString().trim();
 
+        assertEquals(6, output.length());
+
         assertTrue(output.contains("a: 120"));
     }
 
@@ -153,6 +163,8 @@ public class ReferenceTest {
 
         // ----- ASSERT OUTPUT ----- //
         String output = content.toString().trim();
+
+        assertEquals(6, output.length());
 
         assertTrue(output.contains("b: 120"));
     }
