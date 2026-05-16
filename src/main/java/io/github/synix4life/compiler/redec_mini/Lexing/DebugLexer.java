@@ -1,7 +1,5 @@
 package io.github.synix4life.compiler.redec_mini.Lexing;
 
-import java.util.ArrayList;
-
 public class DebugLexer {
 
     // ---------------- DEBUGGER ---------------- //

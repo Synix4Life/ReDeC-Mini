@@ -4,9 +4,9 @@
 ![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=for-the-badge&logo=Gradle&logoColor=white)
 
 ![License](https://img.shields.io/badge/License-GNU_GPL--3.0-fcad3f?style=for-the-badge)
-![Version](https://img.shields.io/badge/Version-1.0.1-fcad3f?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-1.1.0-fcad3f?style=for-the-badge)
 
-![Tests Passed](https://img.shields.io/badge/Tests_Passed-0/0-fcad3f?style=for-the-badge)
+![Tests Passed](https://img.shields.io/badge/Tests_Passed-27/27-fcad3f?style=for-the-badge)
 ![Reference Tests Passed](https://img.shields.io/badge/Reference_Tests_Passed-6/6-02303A.svg?style=for-the-badge)
 
 ---
@@ -24,6 +24,7 @@ This project features 'ReDeC Mini', an interpreter with a recursive-descent pars
 It is designed for a (minimal) custom functional programming language.
 
 This project features a full pipeline:
+
 1. Lexer
 2. Parser
 3. Runtime interpreter with scoped function execution.
@@ -32,12 +33,14 @@ This project features a full pipeline:
 
 Prerequisites: JDK 21+ and Gradle.
 
-Build: 
+Build:
+
 ```bash
 gradle build
 ```
 
 Run a script:
+
 ```bash
 gradle run < yourFile.*
 ```
@@ -47,8 +50,6 @@ gradle run < yourFile.*
 - [Read about the language specification here](docs/Language%20Specification.md)
 
 - [Read about the design decisions here](docs/Design%20Constraints.md)
-
-
 
 ## 🛠 Project Architecture
 
@@ -64,22 +65,27 @@ The compiler follows a traditional three-stage pipeline:
 
 This compiler was created as part for the JetBrains Internship Application for "Showing the Return Value on Method Exit Breakpoints in the Java Debugger".
 
-#### Formal Requirements from the application task
-- Create an interpreter for an artificial programming language. 
+### Formal Requirements from the application task
+
+- Create an interpreter for an artificial programming language.
 - Interpreter reads a source program from standard input, executes it, and prints the values of all variables to standard output
 
 ## Changelog
 
 - $\textsf{\color{#fcad3f}Version 1.0.0}$
-    - Initial Upload
-    - Full Functionality for the following features:
-      - Standard Assignments
-      - Arithmetic and boolean expressions (chained too, considers BODMAS/PEMDAS)
-      - Special Control Flow Statements: IF, WHILE
-      - Function Definitions and Calls (Call Expression and Call Statement)
-      - Application reference test cases passed (6/6)
+  - Initial Upload
+  - Full Functionality for the following features:
+    - Standard Assignments
+    - Arithmetic and boolean expressions (chained too, considers BODMAS/PEMDAS)
+    - Special Control Flow Statements: IF, WHILE
+    - Function Definitions and Calls (Call Expression and Call Statement)
+    - Application reference test cases passed (6/6)
 
-      - $\textsf{\color{#fcad3f}Version 1.0.1}$
-        - Minimal fixes
-        - Specific pipeline class
-        - Documentation / Structuring improvements
+    - $\textsf{\color{#fcad3f}Version 1.0.1}$
+      - Minimal fixes
+      - Specific pipeline class
+      - Documentation / Structuring improvements
+  
+  - $\textsf{\color{#fcad3f}Version 1.1.0}$
+    - Added Lexer & Parser Tests
+    - Added equals and hashCode overwriting in Parser classes to make comparisons possible

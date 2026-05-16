@@ -1,17 +1,14 @@
 package io.github.synix4life.compiler.redec_mini.Parser;
 
 import io.github.synix4life.compiler.redec_mini.Lexing.*;
-import io.github.synix4life.compiler.redec_mini.Parser.Exception.ParserException;
-import io.github.synix4life.compiler.redec_mini.Parser.Exception.SubClassParserException;
+import io.github.synix4life.compiler.redec_mini.Parser.Exception.*;
 import io.github.synix4life.compiler.redec_mini.Parser.Types.*;
 import io.github.synix4life.compiler.redec_mini.Parser.Types.Expr.*;
 import io.github.synix4life.compiler.redec_mini.Parser.Types.Fun.*;
 
-import javax.swing.plaf.nimbus.State;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 public class Parser {
     // ---------------- VARIABLES ---------------- //
@@ -132,7 +129,6 @@ public class Parser {
         if(check(TokenType.RETURN)){
             return parseReturn();
         }
-
         if(check(TokenType.CALL)){
             return parseFunctionCallStatement();
         }
@@ -431,7 +427,7 @@ public class Parser {
         else if(check(TokenType.FALSE)){
             e.value = 0;
         }
-        else {
+        else { // Should never be reachable
             throw new ParserException("Boolean type neither true, nor false");
         }
         pos++;

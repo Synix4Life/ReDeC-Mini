@@ -1,7 +1,6 @@
 package io.github.synix4life.compiler.redec_mini.Lexing;
 
 import io.github.synix4life.compiler.redec_mini.Lexing.Exception.InvalidCommentFormattingException;
-import io.github.synix4life.compiler.redec_mini.Lexing.Exception.LexingException;
 
 import java.util.ArrayList;
 
@@ -51,6 +50,8 @@ public class Lexer {
             ArrayList<Token> token = tokenize(line);
             tokens.addAll(token);
         }
+
+        if(isMultiLineComment){ throw new InvalidCommentFormattingException("Multiline comment not ended!"); }
     }
 
 
